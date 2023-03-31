@@ -1,12 +1,41 @@
 const choices = ["rock", "paper", "scissors"];
 let compScore = 0;
 let playerScore = 0;
-game();
+let playerSelection = "";
+let turnCount = 0;
+// game();
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  // and for each one we add a 'click' listener
+  button.addEventListener("click", () => {
+    playerSelection = button.value;
+    game();
+    if (turnCount > 5) {
+      compScore = 0;
+      playerScore = 0;
+      playerSelection = "";
+      turnCount = 0;
+      alert("Game Over!");
+    }
+  });
+});
 
 function getComputerChoice() {
   num = Math.floor(Math.random() * 3);
   let choice = choices[num];
   return choice;
+}
+
+function winner() {
+  if (compScore > playerScore) {
+    return "Computer";
+  } else if (compScore < playerScore) {
+    return "Human";
+  } else {
+    return "Draw!";
+  }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -34,14 +63,19 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt("Enter Rock, Paper or Scissors").toLowerCase();
-    let computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(`Player: ${playerSelection}, Computer: ${computerSelection}`);
+  let computerSelection = getComputerChoice();
+  playRound(playerSelection, computerSelection);
+  document.getElementById(
+    "selections"
+  ).textContent = `Player: ${playerSelection}, Computer: ${computerSelection}`;
+  document.getElementById("human").textContent = `${playerScore}`;
+  document.getElementById("comp").textContent = `${compScore}`;
+  document.getElementById("turnCount").textContent = `${turnCount}`;
+  turnCount++;
+  if (turnCount > 5) {
+    let champ = winner();
+    document.getElementById("winner").textContent = `Winner is: ${champ}`;
   }
-  console.clear();
-  console.log(`Final Scores: Player: ${playerScore} | Computer: ${compScore}`);
 }
 
 // function playRound(playerSelection, computerSelection) {
