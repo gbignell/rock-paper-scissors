@@ -4,26 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Rock Paper Scissors</title>
   </head>
   <body>
-    <button value="rock">Rock</button>
-    <button value="paper">Paper</button>
-    <button value="scissors">Scissors</button>
+    <div class="main">
+      <h1>Welcome to Rock, Paper, Scissors!</h1>
 
-    <div>
-      <p id="turnCount"></p>
+      <div>
+        <h2>Round Number: <span id="turnCount">0</span></h2>
+      </div>
+      <h3>Player Selections</h3>
       <p id="selections"></p>
-    </div>
+      <h2>Scores</h2>
+      <div class="score">
+        <div class="scores">
+          <label for="comp">Computer:</label>
+          <p id="comp">0</p>
+        </div>
+        <div class="scores">
+          <label for="human">Human:</label>
+          <p id="human">0</p>
+        </div>
+      </div>
 
-    <div class="score">
-      <label for="comp">Computer:</label>
-      <p id="comp">0</p>
-      <label for="human">Human:</label>
-      <p id="human">0</p>
-    </div>
-    <div class="winner">
-      <p id="winner"></p>
+      <div class="buttons" id="buttons">
+        <button value="rock">
+          <img id="rock" src="images/hand-back-fist-regular.svg" alt="rock" />
+        </button>
+        <button value="paper">
+          <img src="images/hand-solid.svg" alt="paper" />
+        </button>
+        <button value="scissors">
+          <img src="images/hand-scissors-solid.svg" alt="scissors" />
+        </button>
+      </div>
+
+      <div class="winner">
+        <p id="winner"></p>
+      </div>
+      <button id="reset" value="reset">Play Again</button>
     </div>
     <script src="index.js"></script>
   </body>

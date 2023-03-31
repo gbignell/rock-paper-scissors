@@ -3,7 +3,6 @@ let compScore = 0;
 let playerScore = 0;
 let playerSelection = "";
 let turnCount = 0;
-// game();
 
 const buttons = document.querySelectorAll("button");
 
@@ -11,16 +10,30 @@ buttons.forEach((button) => {
   // and for each one we add a 'click' listener
   button.addEventListener("click", () => {
     playerSelection = button.value;
+    turnCount++;
     game();
-    if (turnCount > 5) {
-      compScore = 0;
-      playerScore = 0;
-      playerSelection = "";
-      turnCount = 0;
-      alert("Game Over!");
+    if (turnCount >= 5) {
+      document.getElementById("buttons").style.display = "none";
+      document.getElementById("reset").style.display = "block";
+      if (button.value === "reset") {
+        reset();
+      }
     }
   });
 });
+
+function reset() {
+  turnCount = 0;
+  compScore = 0;
+  playerScore = 0;
+  document.getElementById("selections").textContent = "";
+  document.getElementById("human").textContent = `${playerScore}`;
+  document.getElementById("comp").textContent = `${compScore}`;
+  document.getElementById("turnCount").textContent = `${turnCount}`;
+  document.getElementById("winner").textContent = "";
+  document.getElementById("buttons").style.display = "flex";
+  document.getElementById("reset").style.display = "none";
+}
 
 function getComputerChoice() {
   num = Math.floor(Math.random() * 3);
@@ -67,12 +80,12 @@ function game() {
   playRound(playerSelection, computerSelection);
   document.getElementById(
     "selections"
-  ).textContent = `Player: ${playerSelection}, Computer: ${computerSelection}`;
+  ).textContent = `Human: ${playerSelection}, Computer: ${computerSelection}`;
   document.getElementById("human").textContent = `${playerScore}`;
   document.getElementById("comp").textContent = `${compScore}`;
   document.getElementById("turnCount").textContent = `${turnCount}`;
-  turnCount++;
-  if (turnCount > 5) {
+
+  if (turnCount === 5) {
     let champ = winner();
     document.getElementById("winner").textContent = `Winner is: ${champ}`;
   }
