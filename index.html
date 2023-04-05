@@ -11,19 +11,23 @@
     <div class="main">
       <h1>Welcome to Rock, Paper, Scissors!</h1>
 
-      <div>
+      <div id="round">
         <h2>Round Number: <span id="turnCount">0</span></h2>
       </div>
-      <h3>Player Selections</h3>
-      <p id="selections"></p>
-      <h2>Scores</h2>
+
+      <div class="winner"><h2 id="winner"></h2></div>
+
       <div class="score">
-        <div class="scores">
-          <label for="comp">Computer:</label>
+        <div class="scores" id="computer-container">
+          <h2>Computer</h2>
+          <img src="images/term.png" alt="terminator" />
+          <p id="comp-selection"></p>
           <p id="comp">0</p>
         </div>
-        <div class="scores">
-          <label for="human">Human:</label>
+        <div class="scores" id="human-container">
+          <h2>Human</h2>
+          <img src="images/human.png" alt="human" />
+          <p id="human-selection"></p>
           <p id="human">0</p>
         </div>
       </div>
@@ -40,9 +44,6 @@
         </button>
       </div>
 
-      <div class="winner">
-        <p id="winner"></p>
-      </div>
       <button id="reset" value="reset">Play Again</button>
     </div>
     <script src="index.js"></script>

@@ -15,6 +15,8 @@ buttons.forEach((button) => {
     if (turnCount >= 5) {
       document.getElementById("buttons").style.display = "none";
       document.getElementById("reset").style.display = "block";
+      winner();
+
       if (button.value === "reset") {
         reset();
       }
@@ -26,13 +28,20 @@ function reset() {
   turnCount = 0;
   compScore = 0;
   playerScore = 0;
-  document.getElementById("selections").textContent = "";
+  document.getElementById("comp-selection").textContent = "";
+  document.getElementById("human-selection").textContent = "";
   document.getElementById("human").textContent = `${playerScore}`;
   document.getElementById("comp").textContent = `${compScore}`;
   document.getElementById("turnCount").textContent = `${turnCount}`;
   document.getElementById("winner").textContent = "";
   document.getElementById("buttons").style.display = "flex";
   document.getElementById("reset").style.display = "none";
+  document.getElementById("human-container").style.display = "flex";
+  document.getElementById("computer-container").style.display = "flex";
+  document.getElementById("round").style.display = "block";
+  document.getElementById("human-selection").style.display = "block";
+  document.getElementById("human").style.display = "block";
+  document.getElementById("comp").style.display = "block";
 }
 
 function getComputerChoice() {
@@ -42,9 +51,18 @@ function getComputerChoice() {
 }
 
 function winner() {
+  document.getElementById("round").style.display = "none";
+  document.getElementById("human-selection").style.display = "none";
+  document.getElementById("comp-selection").style.display = "none";
+  document.getElementById("human").style.display = "none";
+  document.getElementById("comp").style.display = "none";
   if (compScore > playerScore) {
+    document.getElementById("human-container").style.display = "none";
+    document.getElementById("winner").textContent = "WINNER!";
     return "Computer";
   } else if (compScore < playerScore) {
+    document.getElementById("computer-container").style.display = "none";
+    document.getElementById("winner").textContent = "WINNER!";
     return "Human";
   } else {
     return "Draw!";
@@ -79,16 +97,17 @@ function game() {
   let computerSelection = getComputerChoice();
   playRound(playerSelection, computerSelection);
   document.getElementById(
-    "selections"
-  ).textContent = `Human: ${playerSelection}, Computer: ${computerSelection}`;
+    "comp-selection"
+  ).textContent = `${computerSelection}`;
+  document.getElementById("human-selection").textContent = `${playerSelection}`;
   document.getElementById("human").textContent = `${playerScore}`;
   document.getElementById("comp").textContent = `${compScore}`;
   document.getElementById("turnCount").textContent = `${turnCount}`;
 
-  if (turnCount === 5) {
-    let champ = winner();
-    document.getElementById("winner").textContent = `Winner is: ${champ}`;
-  }
+  // if (turnCount === 5) {
+  //   let champ = winner();
+  //   document.getElementById("winner").textContent = `Winner is: ${champ}`;
+  // }
 }
 
 // function playRound(playerSelection, computerSelection) {

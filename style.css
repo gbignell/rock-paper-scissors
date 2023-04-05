@@ -106,8 +106,21 @@ select {
 .score {
   display: flex;
   gap: 1rem;
+  justify-content: center;
   text-align: center;
   padding: 0 0 3rem 0;
+}
+
+.scores {
+  min-height: auto;
+  min-width: 10vw;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
 }
 
 #reset {
