@@ -101,6 +101,9 @@ function game() {
   ).textContent = `${computerSelection}`;
   document.getElementById("human-selection").textContent = `${playerSelection}`;
   document.getElementById("human").textContent = `${playerScore}`;
+  document.getElementById(
+    "comp-selection"
+  ).textContent = `${computerSelection}`;
   document.getElementById("comp").textContent = `${compScore}`;
   document.getElementById("turnCount").textContent = `${turnCount}`;
 
